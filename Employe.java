@@ -135,31 +135,25 @@ class EmployeFreelance extends Employe {
 
 class Stagiaire extends Employe {
     private double gratificationMensuelle;
-    private int dureeStage;
     
-    public Stagiaire(String nom, String prenom, int age, String adresse, double gratificationMensuelle, int dureeStage) {
+    public Stagiaire(String nom, String prenom, int age, String adresse, double gratificationMensuelle) {
         super(nom, prenom, age, adresse);
         this.gratificationMensuelle = gratificationMensuelle;
-        this.dureeStage = dureeStage;
     }
     
     public double getGratificationMensuelle() {
         return gratificationMensuelle;
     }
     
-    public int getDureeStage() {
-        return dureeStage;
-    }
-    
     @Override
     public double calculerSalaire() {
-        return gratificationMensuelle * dureeStage;
+        return gratificationMensuelle;
     }
     
     @Override
     public String toString() {
         return super.toString() + ", type=Stagiaire, gratificationMensuelle=" + gratificationMensuelle + 
-               "€, dureeStage=" + dureeStage + " mois";
+               "€";
     }
 }
 
@@ -169,11 +163,11 @@ class Main {
         
         employes.add(new EmployeSalarie("Doe", "John", 35, "123 Rue de Paris", 3500.0));
         employes.add(new EmployeHoraire("Doe", "Jane", 42, "125 Rue de Paris", 25.0, 160));
-        employes.add(new Stagiaire("Doe2", "John", 28, "124 Rue de Paris", 4200.0, 6));
-        employes.add(new EmployeFreelance("Doe2", "Jane", 31, "126 Rue de Paris", 30.0, 3));
+        employes.add(new EmployeFreelance("Doe2", "Jane", 31, "126 Rue de Paris", 2000.0, 3));
+        employes.add(new Stagiaire("Doe2", "John", 28, "124 Rue de Paris", 500.0));
         
         for (Employe employe : employes) {
-            employe.afficherInfos();
+            System.out.println(employe.toString());
             
             System.out.println("Salaire: " + employe.calculerSalaire() + " euros");
             System.out.println("");
